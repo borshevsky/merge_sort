@@ -1,7 +1,8 @@
-MEGABYTE = 1048576
+_32_KILOBYTES = 32768
 
+LIMIT ?= $(_32_KILOBYTES)
 CXX = g++
-CXXFLAGS = -Wall -Wpedantic -Wextra -std=c++14 -DMEMORY_LIMIT=$(MEGABYTE)
+CXXFLAGS = -Wall -Wpedantic -Wextra -std=c++14 -DMEMORY_LIMIT=$(LIMIT)
 
 external_merge: \
 	chunk_sorting.o external_merge.o input_buffer.o \
@@ -15,13 +16,14 @@ external_merge: \
 clean:
 	rm *.o
 	rm external_merge
+	rm input_file
 
-run:
-	./external_merge input
+run: input_file external_merge
+	./external_merge input_file
 
-generate_data:
-	./generator.py input 100000 1000
+input_file:
+	./generator.py input_file 100000 100
 
-all: generate_data external_merge run
+all: run
 
 default: all

@@ -16,4 +16,4 @@ def main(output_file, lines_count, max_line_length):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], int(sys.argv[2]), int(sys.argv[2]))
+    main(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))

@@ -3,6 +3,7 @@
 #include "input_buffers_tracker.h"
 #include "output_buffer.h"
 
+#include <cmath>
 #include <iostream>
 #include <sstream>
 
@@ -77,7 +78,7 @@ std::string ExternalMerge::merge(
 size_t ExternalMerge::chunks_at_time(size_t pass_number) const
 {
     if (pass_number == 0) {
-        return chunks_.size() / 2;
+        return std::ceil((double)chunks_.size() / 2);
     }
 
     return chunks_.size();
